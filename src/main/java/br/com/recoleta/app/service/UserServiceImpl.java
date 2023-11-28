@@ -36,14 +36,33 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
+		
+		 UserType userType = convertToFrontendUserTypeToBackendType(registrationDto.getUserType());
 
-		User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
-				registrationDto.getEmail(), passwordEnconder.encode(registrationDto.getPassword()),
-				Arrays.asList(new Role("ROLE_USER")), Arrays.asList(new UserType("COLLECTS_WASTE")));
+		User user = new User(
+				registrationDto.getFirstName(), 
+				registrationDto.getLastName(),
+				registrationDto.getEmail(), 
+				passwordEnconder.encode(registrationDto.getPassword()),
+				Arrays.asList(new Role("ROLE_USER")),
+				Arrays.asList(userType)
+				);
+		
 
 		return userRepository.save(user);
 	}
 	
+	private UserType convertToFrontendUserTypeToBackendType(String frontendUserType) {
+	    switch (frontendUserType) {
+	        case "WASTE_PRODUCER":
+	            return new UserType("WASTE_PRODUCER");
+	        case "COLLECTS_WASTE":
+	            return new UserType("COLLECTS_WASTE");
+	        // Add more cases as needed
+	        default:
+	            throw new IllegalArgumentException("Invalid user type: " + frontendUserType);
+	    }
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -111,11 +130,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void saveAdmin() {
 		
-		User user = new User("admin", "",
+		User adminUser = new User("admin", null,
 				"admin@admin.com", passwordEnconder.encode("admin"),
-				Arrays.asList(new Role("ROLE_ADMIN")), Arrays.asList(new UserType("")));
+				Arrays.asList(new Role("ROLE_ADMIN")), Arrays.asList(new UserType(null)));
 
-		userRepository.save(user);
+		userRepository.save(adminUser);
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 }

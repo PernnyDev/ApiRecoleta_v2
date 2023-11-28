@@ -12,7 +12,7 @@
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>app</name>
-	<description>Recoleta API v3</description>
+	<description>Recoleta API</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -39,8 +39,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -58,6 +58,15 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt</artifactId>
+    		<version>0.9.1</version>
+		</dependency>
+
+		
 	</dependencies>
 
 	<build>
