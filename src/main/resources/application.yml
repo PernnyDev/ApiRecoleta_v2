@@ -1,18 +1,17 @@
-server:
-  error:
-    include-message: always
-    include-binding-errors: always
-
 spring:
-  datasource:
-    password: 54903214
-    url: jdbc:postgresql://localhost:5432/recoleta_db_v2
-    username: postgres
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    properties:
+   datasource:
+      url: jdbc:sqlserver://recoletaserver.database.windows.net:1433;database=recoleta-database;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+      username: AdminServer
+      password: R3col3t@
+   jpa:
+      show-sql: true
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
+         ddl-auto: create
+         dialect: org.hibernate.dialect.SQLServer2012Dialect
+server:
+   port: 1433
+logging:
+   level:
+      org.springframework.jdbc.core: DEBUG
+
+   
