@@ -1,6 +1,6 @@
 spring:
    datasource:
-      url: jdbc:sqlserver://recoletaserver.database.windows.net:1433;database=recoleta-database;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+      url: jdbc:sqlserver://recoletaserver.database.windows.net:1433;database=Recoleta-DB;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
       username: AdminServer
       password: R3col3t@
    jpa:

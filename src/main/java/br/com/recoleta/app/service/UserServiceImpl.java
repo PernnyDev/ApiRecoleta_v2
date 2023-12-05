@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
 		
-<<<<<<< HEAD
 		Role userRole = roleRepository.findByName("ROLE_USER").orElseThrow(() -> new IllegalArgumentException("Role not found"));
 		UserType userType1 = userTypeRepository.findByName("PRODUCES_WASTE").orElseThrow(() -> new IllegalArgumentException("Role not found"));
 		UserType userType2 = userTypeRepository.findByName("COLLECTS_WASTE").orElseThrow(() -> new IllegalArgumentException("Role not found"));
@@ -66,34 +65,9 @@ public class UserServiceImpl implements UserService{
 			user.setUserType(userType2);
 		}
 		
-=======
-		 UserType userType = convertToFrontendUserTypeToBackendType(registrationDto.getUserType());
-
-		User user = new User(
-				registrationDto.getFirstName(), 
-				registrationDto.getLastName(),
-				registrationDto.getEmail(), 
-				passwordEnconder.encode(registrationDto.getPassword()),
-				Arrays.asList(new Role("ROLE_USER")),
-				Arrays.asList(userType)
-				);
-		
-
->>>>>>> 31d422dbc403caee28ac0676ff0faac4ff76180f
 		return userRepository.save(user);
 	}
 	
-	private UserType convertToFrontendUserTypeToBackendType(String frontendUserType) {
-	    switch (frontendUserType) {
-	        case "WASTE_PRODUCER":
-	            return new UserType("WASTE_PRODUCER");
-	        case "COLLECTS_WASTE":
-	            return new UserType("COLLECTS_WASTE");
-	        // Add more cases as needed
-	        default:
-	            throw new IllegalArgumentException("Invalid user type: " + frontendUserType);
-	    }
-	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -160,18 +134,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void saveAdmin() {
 		
-<<<<<<< HEAD
 		Role adminRole = roleRepository.findByName("ROLE_ADMIN").orElseThrow(() -> new IllegalArgumentException("Role not found"));
 		
 		User adminUser = new User("admin", null,
 				"admin@admin.com", passwordEnconder.encode("admin"));
 		
 		adminUser.setRoles(adminRole);
-=======
-		User adminUser = new User("admin", null,
-				"admin@admin.com", passwordEnconder.encode("admin"),
-				Arrays.asList(new Role("ROLE_ADMIN")), Arrays.asList(new UserType(null)));
->>>>>>> 31d422dbc403caee28ac0676ff0faac4ff76180f
 
 		userRepository.save(adminUser);
 	}
