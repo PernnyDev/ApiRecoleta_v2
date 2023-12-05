@@ -5,7 +5,12 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+
+
+>>>>>>> 31d422dbc403caee28ac0676ff0faac4ff76180f
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,12 +45,16 @@ public class UserController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+<<<<<<< HEAD
 	
 	@Autowired
 	private RoleService roleService;
 
 	@Autowired
 	private UserTypeService userTypeService;
+=======
+
+>>>>>>> 31d422dbc403caee28ac0676ff0faac4ff76180f
 
 	@PostMapping("/registration")
 	public ResponseEntity<User> registerUserAccount(@RequestBody UserRegistrationDto registrationDto){
@@ -122,6 +131,7 @@ public class UserController {
 		return ResponseEntity.ok().build();
 	}
 
+<<<<<<< HEAD
 	
 	@PostConstruct
 	public void init() {
@@ -131,4 +141,13 @@ public class UserController {
 		userTypeService.saveUserTypeProduces();
 		userService.saveAdmin();
 	}
+=======
+
+	@PostConstruct
+	public void initAdmin() {
+		userService.saveAdmin();
+	}
+
+
+>>>>>>> 31d422dbc403caee28ac0676ff0faac4ff76180f
 }
